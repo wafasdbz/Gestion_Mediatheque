@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
+
 import lombok.Data;
 
 @Entity
@@ -22,12 +24,16 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	
 	private String login;
 	private String passeWord;
 	private String nom;
+	
 	private String prenom;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	//@Size(max=3)
 	private Set<Emprunt> emprunts = new HashSet<>();
 
 }

@@ -38,6 +38,10 @@ insert into LIVRE (ECRIVAIN, NUM_ISBN, ID) values ('Patrice',1432,13);
 insert into LIVRE (ECRIVAIN, NUM_ISBN, ID) values ('Amine',6475,14);
 insert into LIVRE (ECRIVAIN, NUM_ISBN, ID) values ('Xavier',4356,15);
 
-
+insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-09-12','2022-09-22',1);
+insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-08-12','2022-08-22',2);
+insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-01-12','2022-01-22',3);
+insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-03-12','2022-03-22',1);
+insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-05-12','2022-05-22',4);
 
 
