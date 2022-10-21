@@ -11,6 +11,7 @@ import com.example.gestionMed.entity.User;
 
 @Repository
 public interface UtilisateurRepository extends JpaRepository<User, Long> {
+	
 	public User findUserByLogin (String login) ;
 
 }

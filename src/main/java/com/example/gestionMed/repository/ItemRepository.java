@@ -15,4 +15,6 @@ public interface ItemRepository extends JpaRepository <Item, Long> {
 	
 	@Query("select i from Item i where i.nbreExemplaire >0")
 	public List<Item> findItemDisponible();
+	
+	
 }
