@@ -12,9 +12,7 @@ import com.example.gestionMed.entity.Item;
 public interface ItemRepository extends JpaRepository <Item, Long> {
 	
 	
-	@Query("select * from Item ")
-	List<Item> findAll();
 	
-	@Query("select i from Item where i.nbreExemplaire >0")
+	@Query("select i from Item i where i.nbreExemplaire >0")
 	public List<Item> findItemDisponible();
 }
