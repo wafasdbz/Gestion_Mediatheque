@@ -13,6 +13,12 @@ import com.example.gestionMed.entity.Item;
 public interface EmpruntRepository extends JpaRepository <Emprunt, Long> {
 
 	List<Emprunt> findAllById(Long id );
+	
+	List<Emprunt> findAllByUserId(Long userId );
+	
+	
+	
+	
 }
 
 
