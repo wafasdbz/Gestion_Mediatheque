@@ -49,10 +49,19 @@ public class ItemServiceTest {
 		assertEquals(listCdsDispo.size(),4);
 	}*/
 	
-	@Test
-	void testfindItemRecent() {
-		List<Item> listItemRecents = itemService.findItemRecent();
-		assertTrue(listItemRecents.size()==2);
-	}
+	//Test de la recherche des items récents (à partir de 2020)
+		/* @Test 
+		
+		  void testfindItemRecent() { 
+			  
+			  List<Item> listItemRecents =itemService.findItemRecent(); 
+			
+			  assertTrue(listItemRecents.size()==2); }*/
+		 @Test
+		 void testfindItemByTitle() { 
+			  
+			  Item item =itemService.getItemByTitle("Le feu");
+			
+			  assertTrue(item.getId()==4); }
 
 }

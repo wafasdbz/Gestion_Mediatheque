@@ -18,15 +18,13 @@ public interface ItemRepository extends JpaRepository <Item, Long> {
 	@Query("select i from Item i where i.nbreExemplaire >0")
 	public List<Item> findItemDisponible();
 	
-	
-	@Query("select i from Item i where i.nbreExempliare >0 and i.dateParution > ?1 ")
-	public List<Item> findItemRecents(Date date);
-	
-	@Query("select i from Item i where i.titre == ?1 ")
+	@Query("select i from Item i where i.titre = ?1")
 	public Item findItemByTitle(String titre);
 	
-	/*@Query("select i from Item i where i.nbreExempliare >0 and i.dateParution = ?1 ")
-	public List<Item> findItemByDate(Date date);*/
+	
+
+	
+	
 	
 	
 

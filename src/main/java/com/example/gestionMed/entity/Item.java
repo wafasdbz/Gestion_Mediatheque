@@ -1,6 +1,7 @@
 package com.example.gestionMed.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -33,9 +34,59 @@ public class Item implements Serializable{
 	private Long id;
 	private String titre;
 	private Long nbreExemplaire;
-	private Date dateParution;
+	private LocalDate dateParution;
 	
 	
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getTitre() {
+		return titre;
+	}
+
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+
+	public Long getNbreExemplaire() {
+		return nbreExemplaire;
+	}
+
+
+	public void setNbreExemplaire(Long nbreExemplaire) {
+		this.nbreExemplaire = nbreExemplaire;
+	}
+
+
+	public LocalDate getDateParution() {
+		return dateParution;
+	}
+
+
+	public void setDateParution(LocalDate dateParution) {
+		this.dateParution = dateParution;
+	}
+
+
+	public Set<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+
+	public void setEmprunts(Set<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
+
+
 	//pas besoin de cette ref
 	@ManyToMany
 	@JoinTable(name = "item_emprunt",

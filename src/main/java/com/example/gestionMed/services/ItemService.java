@@ -22,7 +22,7 @@ public class ItemService {
 
 	@Autowired
 	ItemRepository itemRepository;
-	private String titre;
+
 
 
 	/*public ItemService(ItemRepository itemRepository) {
@@ -75,31 +75,36 @@ public class ItemService {
 		return allLivres;
 
 	}
-
+	//on a changé le type par LocalDate au lieu de Date
+	//Recherche des nouveautés
 	public List<Item> findItemRecent(){
-		
-		
-		Date date = new Date();
-		date.setYear(date.getYear()-3);
-		
-		List<Item> itemsRecents = itemRepository.findItemRecents(date);
 
-		return  itemsRecents;
-				
+		List<Item> items= itemRepository.findAll();
+		List<Item> itemsRecents =new ArrayList<>();
+
+		for (Item i :items)
+		{
+
+			if (i.getDateParution().isAfter(LocalDate.now().minusYears(3))) {
+				itemsRecents.add(i);
+			}
+
+		}
+
+		return itemsRecents;
+
 	}
 	
-	public void getItemByTitle(String titre) {
-		
-				
-		this.titre=titre;
-		Item item = new Item();
-		item = itemRepository.findItemByTitle(titre);
 	
+	//Recherche item par titre
+	public Item getItemByTitle(String titre) {
+		Item item = itemRepository.findItemByTitle(titre);
+		return item;
 	}
-	
 
 
-	
+
+
 
 
 

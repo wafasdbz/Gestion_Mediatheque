@@ -30,7 +30,7 @@ public class Emprunt {
 	private Set<Item> items = new HashSet<>();
 
 	@ManyToOne
-	private User user;
+	private Utilisateur user;
 
 
 
