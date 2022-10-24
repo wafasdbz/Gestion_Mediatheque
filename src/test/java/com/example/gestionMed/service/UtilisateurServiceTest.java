@@ -1,4 +1,4 @@
-package com.example.gestionMed;
+package com.example.gestionMed.service;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,8 +18,7 @@ public class UtilisateurServiceTest {
 	
 	@Autowired
 	UtilisateurService utilisateurService;
-	@Autowired 
-	UtilisateurRepository utilisateurRepository;
+
 	
 	@Test
 	void testfindUtilisateurByLogin() {
@@ -30,21 +29,6 @@ public class UtilisateurServiceTest {
 
 	}
 	
-	/*@Test
-	void testfindUtilisateurByLoginAndPAssWord() {
-		
-		Optional<Utilisateur> utilisateur;
-		try {
-			utilisateur = utilisateurService.findUtilisateurByLoginAndPassword("zeyna@yahoo.fr","mdpzeyna");
-			assertTrue(utilisateur.isPresent());
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-
-	}*/
+	
 
 }

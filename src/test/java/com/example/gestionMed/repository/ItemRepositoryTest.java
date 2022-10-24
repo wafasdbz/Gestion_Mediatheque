@@ -1,4 +1,4 @@
-package com.example.gestionMed;
+package com.example.gestionMed.repository;
 
 import java.util.List;
 
