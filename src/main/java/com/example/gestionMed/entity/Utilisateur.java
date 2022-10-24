@@ -32,33 +32,7 @@ public class Utilisateur implements Serializable{
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPasseWord() {
-		return passeWord;
-	}
-
-	public void setPasseWord(String passeWord) {
-		this.passeWord = passeWord;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+	
 
 	public String getPrenom() {
 		return prenom;
@@ -79,6 +53,7 @@ public class Utilisateur implements Serializable{
 	private String nom;
 	
 	private String prenom;
+	
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	//@Size(max=3)
