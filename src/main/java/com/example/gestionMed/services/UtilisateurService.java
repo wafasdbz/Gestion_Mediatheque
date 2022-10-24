@@ -2,6 +2,8 @@ package com.example.gestionMed.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,21 +25,21 @@ public class UtilisateurService {
 
 	} 
 
-	/*
-	 * public Utilisateur findUserByLoginAndPassword(String login, String passWord)
-	 * throws Exception{
-	 * 
-	 * try { Utilisateur user = utilisateurRepository.findUtilisateurByLogin(login);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * String motdepasse=user.getPasseWord(); if (motdepasse.equals(passWord))
-	 * return user; else return null;
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
+
+	public Utilisateur findUserByLoginAndPassword(String login, String passWord) {
+
+		Utilisateur user = utilisateurRepository.findUtilisateurByLogin(login);
+		try {
+		String motdepasse=user.getPasseWord();
+		if (motdepasse.equals(passWord))
+			return user;}
+		catch{
+			throw new EntityNotFoundException();
+			
+		}
+		
+
+	}
+
 
 }
