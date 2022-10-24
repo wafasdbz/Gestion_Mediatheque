@@ -21,6 +21,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -54,6 +56,7 @@ public class Item implements Serializable{
 	@JoinTable(name = "item_emprunt",
             joinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "emprunt_id", referencedColumnName = "id"))
+	@JsonIgnore
 	private Set<Emprunt> emprunts = new HashSet<>();
 	
 	

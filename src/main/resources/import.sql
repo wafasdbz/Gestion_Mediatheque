@@ -44,4 +44,8 @@ insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-01-12','202
 insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-03-12','2022-03-22',1);
 insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-05-12','2022-05-22',4);
 
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (1 ,1);
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (2 ,1);
+
+
 

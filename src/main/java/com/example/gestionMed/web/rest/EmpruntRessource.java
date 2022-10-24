@@ -15,45 +15,43 @@ import com.example.gestionMed.repository.ItemRepository;
 import com.example.gestionMed.services.EmpruntService;
 import com.example.gestionMed.services.ItemService;
 
-
-
 @RestController
 @RequestMapping("/api/emprunts")
 public class EmpruntRessource {
-	
+
 	@Autowired
 	EmpruntRepository empruntRepository;
 	@Autowired
-	ItemRepository itemRepository;	
+	ItemRepository itemRepository;
 
-private final EmpruntService empruntService;
+	private final EmpruntService empruntService;
 
-	
 	public EmpruntRessource(EmpruntService empruntService) {
-        this.empruntService = empruntService;
-	
-	}	
-	
-	
-	/*
-	 * @GetMapping public ResponseEntity<List<Emprunt>> getAll() {
-	 * 
-	 * List<Emprunt> allEmprunt = empruntRepository.findAll();
-	 * 
-	 * if (allEmprunt.isEmpty()) { return ResponseEntity.notFound().build(); } else
-	 * { return ResponseEntity.ok(allEmprunt); } }
-	 */
-	
-	
-	@GetMapping
-    public ResponseEntity<List<Emprunt>> getAllById() {
-        
-        List<Emprunt> allEmprunt = empruntService.getAllEmprunts(1L);
+		this.empruntService = empruntService;
 
-        if (allEmprunt.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(allEmprunt);
-        }
-    }	
+	}
+
+	@GetMapping
+	public ResponseEntity<List<Emprunt>> getAll() {
+
+		List<Emprunt> allEmprunt = empruntRepository.findAll();
+
+		if (allEmprunt.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		} else {
+			return ResponseEntity.ok(allEmprunt);
+		}
+	}
+
+//	@GetMapping
+//    public ResponseEntity<List<Emprunt>> getAllById() {
+//        
+//        List<Emprunt> allEmprunt = empruntService.getAllEmprunts(1L);
+//
+//        if (allEmprunt.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(allEmprunt);
+//        }
+//    }	
 }

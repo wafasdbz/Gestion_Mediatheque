@@ -12,7 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.BatchSize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -57,6 +58,7 @@ public class Utilisateur implements Serializable{
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	//@Size(max=3)
+	@JsonIgnore
 	private Set<Emprunt> emprunts = new HashSet<>();
 
 }
