@@ -5,13 +5,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import com.example.gestionMed.entity.Emprunt;
 import com.example.gestionMed.entity.Item;
@@ -47,11 +47,9 @@ public class EmpruntService {
 	//Effectuer un emprunt
 	public Emprunt effectuerEmprunt(Long idUtilisateur,List<Long> idItems) throws DepassementQuotaException, ItemNonDisponibleException {
 
-		Optional<Utilisateur> utilisateur = utilisateurRepository.findById(idUtilisateur);
+		Utilisateur utilisateur = utilisateurRepository.findById(idUtilisateur).orElseThrow(() -> new EntityNotFoundException("Utilisateur non reconnu"));
 
-		if (utilisateur.isEmpty())throw new EntityNotFoundException("Utilisateur non reconnu");
-
-		List<Emprunt> listEmprunts = getAllEmprunts(utilisateur.get().getId());
+		List<Emprunt> listEmprunts = getAllEmprunts(utilisateur.getId());
 		int count=0;
 		//compte le nbre total d'items ds tt les emprunts
 		for (Emprunt e : listEmprunts) {
@@ -99,10 +97,10 @@ public class EmpruntService {
 
 	//Restituer un emprunt
 
-	public void RestituerEmprunt(Long idEmprunt) {
+	public void restituerEmprunt(Long idEmprunt) {
 
-		Emprunt emprunt =empruntRepository.getById(idEmprunt);
-		List<Item> items = (List<Item>) emprunt.getItems();
+		Emprunt emprunt =empruntRepository.findById(idEmprunt).orElseThrow(() -> new EntityNotFoundException());
+		Set<Item> items =  emprunt.getItems();
 		
 		empruntRepository.deleteById(idEmprunt);
 		

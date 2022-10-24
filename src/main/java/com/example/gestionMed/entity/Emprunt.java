@@ -29,6 +29,9 @@ public class Emprunt {
 
 	@ManyToMany(mappedBy = "emprunts", cascade = CascadeType.ALL)
 	private Set<Item> items = new HashSet<>();
+	
+	@ManyToOne
+	private Utilisateur user;
 
 	public Set<Item> getItems() {
 		return items;
@@ -58,20 +61,21 @@ public class Emprunt {
 		this.dateRetour = dateRetour;
 	}
 
-	public Optional<Utilisateur> getUser() {
+
+
+	public Utilisateur getUser() {
 		return user;
 	}
 
-	public void setUser(Optional<Utilisateur> utilisateur) {
-		this.user = utilisateur;
+	public void setUser(Utilisateur user) {
+		this.user = user;
 	}
 
 	public void setItems(Set<Item> items) {
 		this.items = items;
 	}
 
-	@ManyToOne
-	private Optional<Utilisateur> user;
+
 
 
 
