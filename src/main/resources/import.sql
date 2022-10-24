@@ -46,6 +46,12 @@ insert into EMPRUNT (DATE_EMPRUNT,DATE_RETOUR,USER_ID) values ('2022-05-12','202
 
 insert into ITEM_EMPRUNT (item_id , emprunt_id) values (1 ,1);
 insert into ITEM_EMPRUNT (item_id , emprunt_id) values (2 ,1);
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (3 ,2);
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (6 ,2);
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (11 ,2);
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (11 ,3);
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (13 ,4);
+insert into ITEM_EMPRUNT (item_id , emprunt_id) values (5 ,5);
 
 
 
