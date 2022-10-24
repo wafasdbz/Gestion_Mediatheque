@@ -3,6 +3,7 @@ package com.example.gestionMed.repository;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,8 @@ public interface ItemRepository extends JpaRepository <Item, Long> {
 	
 	@Query("select i from Item i where i.titre = ?1")
 	public Item findItemByTitle(String titre);
+
+	public void save(Optional<Item> item);
 	
 	
 
