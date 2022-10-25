@@ -1,6 +1,8 @@
 package com.example.gestionMed.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.gestionMed.entity.Emprunt;
 import com.example.gestionMed.exception.DepassementQuotaException;
@@ -35,7 +36,7 @@ public class EmpruntServiceTest {
 		int sizeEmprunts1 = empruntRepository.findAll().size();
 		Emprunt emprunt = empruntService.effectuerEmprunt(1l,idItems);
 		int sizeEmprunts2 = empruntRepository.findAll().size();
-		assertTrue(sizeEmprunts1+1==sizeEmprunts2);
+		assertEquals(sizeEmprunts1+1,sizeEmprunts2);
 	}
 	
 	//Test effectuer emprunt indisponible
@@ -44,10 +45,12 @@ public class EmpruntServiceTest {
 	void effectuerEmpruntNonDispoTest() throws  DepassementQuotaException, ItemNonDisponibleException{
 		idItems.add(4l);
 		
-		int sizeEmprunts1 = empruntRepository.findAll().size();
-		Emprunt emprunt = empruntService.effectuerEmprunt(2l,idItems);
-		int sizeEmprunts2 = empruntRepository.findAll().size();
-		assertTrue(sizeEmprunts1==sizeEmprunts2);
+		try {
+			Emprunt emprunt = empruntService.effectuerEmprunt(4l,idItems);
+			fail("ItemNonDisponibleException n a pas été lancée");
+		} catch (ItemNonDisponibleException e) {
+		}
+
 	}
 
 }

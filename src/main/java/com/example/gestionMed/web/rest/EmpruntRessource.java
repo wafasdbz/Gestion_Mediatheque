@@ -3,6 +3,7 @@ package com.example.gestionMed.web.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,7 +70,7 @@ public class EmpruntRessource {
 	@PostMapping("/user/{userId}")
 	public ResponseEntity<Emprunt> effectuerEmprunt(@PathVariable Long userId, @RequestBody List<Long> idItems)  		throws  DepassementQuotaException, ItemNonDisponibleException {
 
-		return ResponseEntity.ok(empruntService.effectuerEmprunt(userId, idItems));
+		return ResponseEntity.status(HttpStatus.CREATED).body(empruntService.effectuerEmprunt(userId, idItems));
 
 
 	}

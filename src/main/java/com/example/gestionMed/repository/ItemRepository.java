@@ -22,20 +22,5 @@ public interface ItemRepository extends JpaRepository <Item, Long> {
 	@Query("select i from Item i where i.titre = ?1")
 	public Item findItemByTitle(String titre);
 
-	public void save(Optional<Item> item);
-	
-	
-
-	
-	
-	
-	
-
-
-
-	
-	
-	
-	
 	
 }

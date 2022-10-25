@@ -87,9 +87,10 @@ public class EmpruntService {
 		emprunt.setUser(utilisateur);
 		for (Long idItem :  idItems) {
 
-			Optional<Item> item = itemRepository.findById(idItem);
-			emprunt.getItems().add(item.get());
-			item.get().setNbreExemplaire(item.get().getNbreExemplaire()-1);
+			Item item = itemRepository.findById(idItem).orElseThrow(() ->new EntityNotFoundException("Article non reconnu"));
+
+			emprunt.getItems().add(item);
+			item.setNbreExemplaire(item.getNbreExemplaire()-1);
 			itemRepository.save(item);
 
 		}
