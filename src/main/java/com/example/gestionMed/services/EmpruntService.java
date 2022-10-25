@@ -101,10 +101,17 @@ public class EmpruntService {
 
 	//Restituer un emprunt
 
-	public void restituerEmprunt(Long idEmprunt) {
+	public void restituerEmprunt(Long userId, Long idEmprunt) throws Exception {
+		
 
 		Emprunt emprunt =empruntRepository.findById(idEmprunt).orElseThrow(() -> new EntityNotFoundException());
+		
+		Long userIdEmprunt = emprunt.getUser().getId() ;
+		if( userIdEmprunt != userId) throw new Exception() ;  
+			
+		
 		Set<Item> items =  emprunt.getItems();
+		
 		
 		empruntRepository.deleteById(idEmprunt);
 		
