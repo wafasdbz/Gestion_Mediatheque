@@ -6,7 +6,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,13 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.gestionMed.entity.Emprunt;
 import com.example.gestionMed.entity.Utilisateur;
-import com.example.gestionMed.exception.DepassementQuotaException;
-import com.example.gestionMed.exception.ItemNonDisponibleException;
 import com.example.gestionMed.exception.UserNotFoundException;
 import com.example.gestionMed.repository.UtilisateurRepository;
 
@@ -48,19 +45,15 @@ public class UtilisateurRessource {
 		}
 	}
 
-	@GetMapping("/user/{userId}")
-	public ResponseEntity<Utilisateur> getUtilisateurById(@PathVariable Long userId) {
-		try {
-			Utilisateur utilisateur = utilisateurRepository.getById(userId);
-			return ResponseEntity.ok(utilisateur);
-		} catch (UserNotFoundException e) {
-			throw e;
-		}
+	@GetMapping("/{userId}")
+	public Utilisateur getUtilisateurById(@PathVariable Long userId) {
+
+		return utilisateurRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
 
 	}
 
-	@GetMapping("/user/{login}")
-	public ResponseEntity<Utilisateur> getUtilisateurByloginAndPassword(@PathVariable String login,@RequestBody String passWord) {
+	@GetMapping("/login")
+	public ResponseEntity<Utilisateur> getUtilisateurByloginAndPassword(@RequestParam String login,@RequestParam String passWord) {
 		try {
 			Utilisateur utilisateur = utilisateurRepository.findByLoginAndPasseWord(login, passWord);
 			return ResponseEntity.ok(utilisateur);
