@@ -2,13 +2,14 @@ package com.example.gestionMed.securityConfig;
 
 
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
-
+@Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
@@ -18,8 +19,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 		 .csrf().disable()
 		 .authorizeRequests() // ACLs
-		 .antMatchers(HttpMethod.GET,"/items/**").permitAll()
-		 .antMatchers("/emprunt/**").authenticated()
+		 .antMatchers(HttpMethod.GET,"/api/items/**").permitAll()
+//		 .antMatchers("/emprunt/**").authenticated()
 		 .anyRequest().authenticated()
 		 .and()
 		 .formLogin()// Page de login
