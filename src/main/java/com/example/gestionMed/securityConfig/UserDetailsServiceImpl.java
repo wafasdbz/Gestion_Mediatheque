@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,10 +21,20 @@ import com.example.gestionMed.repository.UtilisateurRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
+	
+	@Autowired private UtilisateurRepository utilisateurRepository;
 	@Override
+	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		Utilisateur utilisateur =utilisateurRepository.findUtilisateurByLogin(username); 
+		if ( utilisateur == null ) throw new UsernameNotFoundException("Invalides login/mot de passe");
+		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		return new User(utilisateur.getLogin(), "{noop}" + utilisateur.getPasseWord(), grantedAuthorities);
+	}
+	
+		//return null;
 	}
 	/*
 	 * @Autowired private UtilisateurRepository utilisateurRepository;
@@ -35,6 +46,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	 * grantedAuthorities = new HashSet<>(); for (Role role :
 	 * utilisateur.getRoles()){ grantedAuthorities.add(new
 	 * SimpleGrantedAuthority(role.getLibelle())); } return new
-	 * User(account.getLogin(), account.getPassword(), grantedAuthorities); }
+	 * User(utilisateur.getLogin(), "{noop}" + utilisateur.getPassword(), grantedAuthorities); }
 	 */
-}
+	
+	
+	

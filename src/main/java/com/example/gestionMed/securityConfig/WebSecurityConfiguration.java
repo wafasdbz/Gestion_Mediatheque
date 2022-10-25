@@ -33,16 +33,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 
 	}
 	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		
-		// Ici on utilise un realm mémoire, AuthenticationManagerBuilder permet
-		// également de facilement de se connecter à un annuaire LDAP ou une bd
-		
-		 auth.inMemoryAuthentication().withUser("user").password("{noop}"+ "password")
-		 .roles("USER")
-		 .and().withUser("admin").password("{noop}"+ "password")
-		 .roles("USER", "ADMIN");
-	}
+	/*
+	 * @Override protected void configure(AuthenticationManagerBuilder auth) throws
+	 * Exception {
+	 * 
+	 * 
+	 * // Ici on utilise un realm mémoire, AuthenticationManagerBuilder permet //
+	 * également de facilement de se connecter à un annuaire LDAP ou une bd
+	 * 
+	 * auth.inMemoryAuthentication().withUser("user").password("{noop}"+ "password")
+	 * .roles("USER") .and().withUser("admin").password("{noop}"+ "password")
+	 * .roles("USER", "ADMIN"); }
+	 */
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,8 @@ import com.example.gestionMed.repository.ItemRepository;
 import com.example.gestionMed.services.EmpruntService;
 import com.example.gestionMed.services.ItemService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 
 
 
@@ -45,7 +48,7 @@ public class EmpruntRessource {
 	}
 
 
-	//@Operation(value = "Permet de visualiser tout les emprunts")
+	//@Api(value="onlinestore", description="Operations pertaining to products in Online Store")
 	@GetMapping
 	public ResponseEntity<List<Emprunt>> getAll() {
 

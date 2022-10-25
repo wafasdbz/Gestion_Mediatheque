@@ -54,7 +54,7 @@ public class EmpruntService {
 		int count=0;
 		//compte le nbre total d'items ds tt les emprunts
 		for (Emprunt e : listEmprunts) {
-			count=+e.getItems().size();
+			count+=e.getItems().size();
 		}
 		if (count>2)throw new DepassementQuotaException("Dépassement de la limite d'articles autorisés");
 			
