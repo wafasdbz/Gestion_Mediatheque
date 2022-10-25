@@ -60,13 +60,15 @@ public class EmpruntService {
 
 		for (Long idItem :  idItems) {
 
-			Optional<Item> item = itemRepository.findById(idItem);
+			//Optional<Item> item = itemRepository.findById(idItem);
+			Item item = itemRepository.findById(idItem).orElseThrow(() ->new EntityNotFoundException("Article non reconnu"));
 
-			//verification de la validité de identifiant de item
-			if (!(item.isPresent())) throw new EntityNotFoundException("Article non reconnu");
+//			//verification de la validité de identifiant de item
+//			if (!(item.isPresent())) throw new EntityNotFoundException();
 
 			//verification de la disponibilité
-			if (item.get().getNbreExemplaire()==0)throw new ItemNonDisponibleException("Article indisponible");
+			//if (item.get().getNbreExemplaire()==0)throw new ItemNonDisponibleException("Article indisponible");
+			if (item.getNbreExemplaire()==0)throw new ItemNonDisponibleException("Article indisponible");
 				
 
 

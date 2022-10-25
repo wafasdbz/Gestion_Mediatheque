@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.gestionMed.entity.Emprunt;
 import com.example.gestionMed.exception.DepassementQuotaException;
@@ -26,6 +27,7 @@ public class EmpruntServiceTest {
 	List<Long> idItems = new ArrayList<>();
 	
 	//Test effectuer emprunt disponible
+	
 	@Test
 	void effectuerEmpruntTest() throws  DepassementQuotaException, ItemNonDisponibleException{
 		idItems.add(1l);
@@ -37,6 +39,7 @@ public class EmpruntServiceTest {
 	}
 	
 	//Test effectuer emprunt indisponible
+	
 	@Test
 	void effectuerEmpruntNonDispoTest() throws  DepassementQuotaException, ItemNonDisponibleException{
 		idItems.add(4l);
