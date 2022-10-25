@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
+import org.springframework.context.annotation.Role;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -31,6 +33,8 @@ public class Utilisateur implements Serializable{
 	private String login;
 	
 	private String passeWord;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,6 +66,7 @@ public class Utilisateur implements Serializable{
 	//@Size(max=3)
 	@JsonIgnore
 	private Set<Emprunt> emprunts = new HashSet<>();
+	
 
 }
 
