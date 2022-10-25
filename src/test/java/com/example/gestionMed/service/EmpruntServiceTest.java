@@ -34,7 +34,7 @@ public class EmpruntServiceTest {
 		idItems.add(1l);
 		idItems.add(2l);
 		int sizeEmprunts1 = empruntRepository.findAll().size();
-		Emprunt emprunt = empruntService.effectuerEmprunt(1l,idItems);
+		Emprunt emprunt = empruntService.effectuerEmprunt(3l,idItems);
 		int sizeEmprunts2 = empruntRepository.findAll().size();
 		assertEquals(sizeEmprunts1+1,sizeEmprunts2);
 	}

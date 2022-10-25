@@ -23,6 +23,8 @@ import com.example.gestionMed.entity.Utilisateur;
 import com.example.gestionMed.exception.UserNotFoundException;
 import com.example.gestionMed.repository.UtilisateurRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 
 @RestController
 @RequestMapping("/api/utilisateurs")
@@ -32,7 +34,7 @@ public class UtilisateurRessource {
 	UtilisateurRepository  utilisateurRepository;
 
 
-
+	@Operation(summary="Consulter tous les utilisateurs ")
 	@GetMapping
 	public ResponseEntity<List<Utilisateur>> getAll() {
 
@@ -44,7 +46,8 @@ public class UtilisateurRessource {
 			return ResponseEntity.ok(allUtilisateur);
 		}
 	}
-
+	
+	@Operation(summary="Rechercher un utilisateur par son identifiant ")
 	@GetMapping("/{userId}")
 	public Utilisateur getUtilisateurById(@PathVariable Long userId) {
 
@@ -52,6 +55,7 @@ public class UtilisateurRessource {
 
 	}
 
+	@Operation(summary="Rechercher un utilisateur par son login et mot de passe ")
 	@GetMapping("/login")
 	public ResponseEntity<Utilisateur> getUtilisateurByloginAndPassword(@RequestParam String login,@RequestParam String passWord) {
 		try {
@@ -63,20 +67,20 @@ public class UtilisateurRessource {
 
 	}
 
-
+	@Operation(summary="Mise à jour d'un utilisateur ")
 	@PutMapping("/user/{userId}")
 	public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable String userId, @RequestBody Utilisateur utilisateur){
 
 
 		return ResponseEntity.ok(utilisateurRepository.save(utilisateur));
 	}
-
+	@Operation(summary="Ajout d'un nouveau utilisateur ")
 	@PostMapping
 	public ResponseEntity<Utilisateur> enregistrerUtilisateur(@Valid @RequestBody Utilisateur utilisateur) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(utilisateurRepository.save(utilisateur));
 	}
 
-
+	@Operation(summary="Suppression d'un utilisateur")
 	@DeleteMapping("/user/{userId}")
 	public ResponseEntity<Void> deleteById(@PathVariable Long userId) {
 		try {

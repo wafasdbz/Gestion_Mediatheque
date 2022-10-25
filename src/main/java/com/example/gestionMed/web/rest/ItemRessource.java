@@ -14,6 +14,8 @@ import com.example.gestionMed.entity.Livre;
 import com.example.gestionMed.services.EmpruntService;
 import com.example.gestionMed.services.ItemService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/api/items")
 public class ItemRessource {
@@ -26,6 +28,7 @@ public class ItemRessource {
         
     }
 	
+	@Operation(summary="Visualiser tous les Items")
 	@GetMapping
     public ResponseEntity<List<Item>> getAll() {
         
@@ -38,7 +41,7 @@ public class ItemRessource {
         }
     }
 	
-	
+	@Operation(summary="Visualiser les Items Disponibles ")
 	@GetMapping("/disponibles")
     public ResponseEntity<List<Item>> getAllDisponible() {
         
@@ -51,6 +54,7 @@ public class ItemRessource {
         }
     }
 	
+	@Operation(summary="Visualiser les CD Disponibles ")
 	@GetMapping("/disponibles/CD")
     public ResponseEntity<List<Cd>> getAllCdDispo() {
         
@@ -63,6 +67,7 @@ public class ItemRessource {
         }
     }
 	
+	@Operation(summary="Visualiser les Dvd Disponibles ")
 	@GetMapping("/disponibles/Dvd")
     public ResponseEntity<List<Dvd>> getAllDvdDispo() {
         
@@ -75,6 +80,7 @@ public class ItemRessource {
         }
     }
 	
+	@Operation(summary="Visualiser les Livres Disponibles ")
 	@GetMapping("/disponibles/Livre")
     public ResponseEntity<List<Livre>> getAllLivreDispo() {
         
@@ -87,6 +93,7 @@ public class ItemRessource {
         }
     }
 	
+	@Operation(summary="Visualiser les Items Recents ")
 	@GetMapping("/Recents")
     public ResponseEntity<List<Item>> getItemRecent() {
         
