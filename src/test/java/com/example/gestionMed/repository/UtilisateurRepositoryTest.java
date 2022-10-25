@@ -20,10 +20,10 @@ public class UtilisateurRepositoryTest {
 	@Test
 	void testfindUtilisateurByLoginAndPAssWord() {
 		
-		Optional<Utilisateur> utilisateur;
+		Utilisateur utilisateur;
 		try {
 			utilisateur = utilisateurRepository.findByLoginAndPasseWord("zeyna@yahoo.fr","mdpzeyna");
-			assertTrue(utilisateur.isPresent());
+			assertTrue(utilisateur!=null);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

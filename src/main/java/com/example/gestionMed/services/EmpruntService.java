@@ -18,6 +18,7 @@ import com.example.gestionMed.entity.Item;
 import com.example.gestionMed.entity.Utilisateur;
 import com.example.gestionMed.exception.DepassementQuotaException;
 import com.example.gestionMed.exception.ItemNonDisponibleException;
+import com.example.gestionMed.exception.UserNotFoundException;
 import com.example.gestionMed.repository.EmpruntRepository;
 import com.example.gestionMed.repository.ItemRepository;
 import com.example.gestionMed.repository.UtilisateurRepository;
@@ -101,13 +102,13 @@ public class EmpruntService {
 
 	//Restituer un emprunt
 
-	public void restituerEmprunt(Long userId, Long idEmprunt) throws Exception {
+	public void restituerEmprunt(Long userId, Long idEmprunt) throws UserNotFoundException,EntityNotFoundException {
 		
 
 		Emprunt emprunt =empruntRepository.findById(idEmprunt).orElseThrow(() -> new EntityNotFoundException());
 		
 		Long userIdEmprunt = emprunt.getUser().getId() ;
-		if( userIdEmprunt != userId) throw new Exception() ;  
+		if( userIdEmprunt != userId) throw new UserNotFoundException() ;  
 			
 		
 		Set<Item> items =  emprunt.getItems();
