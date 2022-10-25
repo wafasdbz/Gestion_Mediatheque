@@ -5,15 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.gestionMed.entity.Emprunt;
 import com.example.gestionMed.entity.Item;
+import com.example.gestionMed.exception.DepassementQuotaException;
+import com.example.gestionMed.exception.ItemNonDisponibleException;
 import com.example.gestionMed.repository.EmpruntRepository;
 import com.example.gestionMed.repository.ItemRepository;
 import com.example.gestionMed.services.EmpruntService;
 import com.example.gestionMed.services.ItemService;
+
+
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/emprunts")
@@ -31,6 +38,8 @@ public class EmpruntRessource {
 
 	}
 
+	
+	//@Operation(value = "Permet de visualiser tout les emprunts")
 	@GetMapping
 	public ResponseEntity<List<Emprunt>> getAll() {
 
@@ -42,16 +51,16 @@ public class EmpruntRessource {
 			return ResponseEntity.ok(allEmprunt);
 		}
 	}
+	
+	@PostMapping
+    public ResponseEntity<Emprunt> effectuerEmprunt(@RequestBody Long userId, @RequestBody List<Long> idItems)
+    		throws  DepassementQuotaException, ItemNonDisponibleException {
+		
+			return ResponseEntity.ok(empruntService.effectuerEmprunt(userId, idItems));
+		
+		
+	}
+	
 
-//	@GetMapping
-//    public ResponseEntity<List<Emprunt>> getAllById() {
-//        
-//        List<Emprunt> allEmprunt = empruntService.getAllEmprunts(1L);
-//
-//        if (allEmprunt.isEmpty()) {
-//            return ResponseEntity.notFound().build();
-//        } else {
-//            return ResponseEntity.ok(allEmprunt);
-//        }
-//    }	
+
 }

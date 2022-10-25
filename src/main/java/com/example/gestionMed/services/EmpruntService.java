@@ -56,7 +56,7 @@ public class EmpruntService {
 			count=+e.getItems().size();
 		}
 		if (count>2)throw new DepassementQuotaException("Dépassement de la limite d'articles autorisés");
-
+			
 
 		for (Long idItem :  idItems) {
 
@@ -67,6 +67,7 @@ public class EmpruntService {
 
 			//verification de la disponibilité
 			if (item.get().getNbreExemplaire()==0)throw new ItemNonDisponibleException("Article indisponible");
+				
 
 
 
