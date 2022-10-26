@@ -57,22 +57,19 @@ public class EmpruntService {
 			count+=e.getItems().size();
 		}
 		if (count>2)throw new DepassementQuotaException("Dépassement de la limite d'articles autorisés");
-			
+
 
 		for (Long idItem :  idItems) {
 
 			//Optional<Item> item = itemRepository.findById(idItem);
 			Item item = itemRepository.findById(idItem).orElseThrow(() ->new EntityNotFoundException("Article non reconnu"));
 
-//			//verification de la validité de identifiant de item
-//			if (!(item.isPresent())) throw new EntityNotFoundException();
+			//			//verification de la validité de identifiant de item
+			//			if (!(item.isPresent())) throw new EntityNotFoundException();
 
 			//verification de la disponibilité
-			//if (item.get().getNbreExemplaire()==0)throw new ItemNonDisponibleException("Article indisponible");
+
 			if (item.getNbreExemplaire()==0)throw new ItemNonDisponibleException("Article indisponible");
-				
-
-
 
 		}
 		//Initialisation dateEmprunt et date de retour (+7 jrs)
@@ -86,6 +83,7 @@ public class EmpruntService {
 		emprunt.setDateEmprunt(dateEmprunt);
 		emprunt.setDateRetour(dateRetour);
 		emprunt.setUser(utilisateur);
+		
 		for (Long idItem :  idItems) {
 
 			Item item = itemRepository.findById(idItem).orElseThrow(() ->new EntityNotFoundException("Article non reconnu"));
@@ -103,26 +101,26 @@ public class EmpruntService {
 	//Restituer un emprunt
 
 	public void restituerEmprunt(Long userId, Long idEmprunt) throws UserNotFoundException,EntityNotFoundException {
-		
+
 
 		Emprunt emprunt =empruntRepository.findById(idEmprunt).orElseThrow(() -> new EntityNotFoundException());
-		
+
 		Long userIdEmprunt = emprunt.getUser().getId() ;
 		if( userIdEmprunt != userId) throw new UserNotFoundException() ;  
-			
-		
+
+
 		Set<Item> items =  emprunt.getItems();
-		
-		
+
+
 		empruntRepository.deleteById(idEmprunt);
-		
+
 		for (Item item:items  ) {
 
 			item.setNbreExemplaire(item.getNbreExemplaire()+1);
 			itemRepository.save(item);	
 
 		}
-		
+
 
 	}
 
